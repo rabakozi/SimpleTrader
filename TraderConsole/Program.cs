@@ -29,6 +29,8 @@ namespace TraderConsole
             //Scenario.RolledBackBuyCausesOverSale(IsolationLevel.Serializable);
             //Console.ReadLine();
 
+            // update cannot work with snapshot
+
             Scenario.RolledBackBuyCausesOverSale(IsolationLevel.Snapshot);
             Console.ReadLine();
         }
