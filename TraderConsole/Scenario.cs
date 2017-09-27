@@ -28,10 +28,9 @@ namespace TraderConsole
             Console.WriteLine();
             var tasks = new List<Task>();
 
-            // four selling one failing buying
-            for (int i = 0; i < 4; i++)
+            // five selling one failing buying
+            for (int i = 0; i < 5; i++)
             {
-                int index = i;
                 tasks.Add(Task.Run(() => RunActor(Action.Sell, isolationLevel, 4, 0)));
             }
             tasks.Add(Task.Run(() => RunActor(Action.Buy, isolationLevel, 10, 100)));
@@ -53,11 +52,11 @@ namespace TraderConsole
                     string name = GetRandomArticleName();
                     bool rollback = IsRollBack(rollbackProbabilityPercentage);
                     string sp = action.ToString();
-                    string storedProcedure = $"dbo.{sp}";
+                    string storedProcedure = $"dbo.{sp}_{isolationLevel}";
 
                     stopwatch.Restart();
-                    conn.Query($"dbo.{sp}",
-                       new { Name = name, Quantity = quantity, Rollback = rollback, IsolationLevel = SqlIsolationLevel(isolationLevel) }, commandType: CommandType.StoredProcedure);
+                    conn.Query(storedProcedure,
+                       new { Name = name, Quantity = quantity, Rollback = rollback }, commandType: CommandType.StoredProcedure);
 
                     Console.WriteLine($"iteration:{i}, {sp}ing of {name}, Rollback:{rollback}, Elapsed: {stopwatch.ElapsedMilliseconds} ms");
                 }
@@ -107,7 +106,8 @@ namespace TraderConsole
 
         static string GetRandomArticleName()
         {
-            var pos = random.Next(0, 8);
+            // only the first 4 row
+            var pos = random.Next(0, 4);
             return Seed.Articles()[pos].Name;
         }
 

@@ -16,8 +16,8 @@ namespace TraderConsole
             return articles ?? (articles = new Article[]
             {
                 new Article { Name = "Jersey", Price = 38, Stock = 6 },
-                new Article { Name = "Shorts", Price = 45, Stock = 10 },
-                new Article { Name = "Bib", Price = 47, Stock = 7 },
+                new Article { Name = "Shorts", Price = 45, Stock = 3 },
+                new Article { Name = "Bib", Price = 47, Stock = 10 },
                 new Article { Name = "Tights", Price = 76, Stock = 5 },
                 new Article { Name = "Jacket", Price = 110, Stock = 4 },
                 new Article { Name = "Gloves", Price = 22, Stock = 6 },

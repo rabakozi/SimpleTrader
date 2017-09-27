@@ -1,15 +1,8 @@
-﻿using CommandLine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TraderConsole
+﻿namespace TraderConsole
 {
     static class Options
     {
-        public static int NumOfThrerads { get { return 5; } }
+        public static int NumOfThrerads { get { return 10; } }
         public static int Iterations { get { return 10; } }
     }
 

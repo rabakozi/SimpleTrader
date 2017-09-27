@@ -21,9 +21,15 @@ namespace TraderConsole
             Console.ReadLine();
             Scenario.RolledBackBuyCausesOverSale(IsolationLevel.ReadCommitted);
             Console.ReadLine();
-            Scenario.RolledBackBuyCausesOverSale(IsolationLevel.RepeatableRead);
-            Console.ReadLine();
-            Scenario.RolledBackBuyCausesOverSale(IsolationLevel.Serializable);
+
+            // those causes deadlock:
+
+            //Scenario.RolledBackBuyCausesOverSale(IsolationLevel.RepeatableRead);
+            //Console.ReadLine();
+            //Scenario.RolledBackBuyCausesOverSale(IsolationLevel.Serializable);
+            //Console.ReadLine();
+
+            Scenario.RolledBackBuyCausesOverSale(IsolationLevel.Snapshot);
             Console.ReadLine();
         }
     }
